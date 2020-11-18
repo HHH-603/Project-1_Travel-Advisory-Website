@@ -50,6 +50,70 @@ function search(event){
 
 })}
 
+// News API Code
+
+// Global variables for News API
+
+var city = $("#cityInput")
+
+var country = $("#countryInput")
+
+
+
+// Travel Advisory
+// "https://www.travel-advisory.info/api"
+
+//News
+function logNewsAPIQuery() {
+    var combinedCityCountry = city.val().trim().concat("%20", country.val().trim(), "%20covid");
+    return "http://newsapi.org/v2/everything?q=" +combinedCityCountry+ "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
+
+}
+
+function updateNewsSection(response) {
+    console.log(response);
+    // console.log("News API Query: " + combinedCityCountry);
+
+    
+    var numArticles = 5;
+
+    for (var i = 0; i < numArticles; i++) {
+        var title = response.articles.source.title[i];
+
+        var articleCount = i + 1;
+
+        var $articleList = $("<ul>");
+        $articleList.addClass("list-group");
+
+        $("#article-section").append($articleList);
+
+        var articleListItem = $("")
+
+        var description = response.articles.source.description[i];
+        
+        var articleURL = response.articles.source.url[i];
+
+        var publishedDate = response.articles.source.publishedAt;
+
+        if (title) {
+            $articleList.append("<span class>")
+        }
+    }
+}
+
+//Click Handlers for News API
+$("#userInput").on("submit", function(event) {
+    event.preventDefault();
+
+    clearInterval();
+
+    var newsAPI = logNewsAPIQuery();
+
+    $.ajax({
+        url: newsAPI,
+        method: "GET",
+    }).then(updateNewsSection);
+});
 $("#checkCity").on("click", search);
 //$(cityInput).empty()
 //$(countryInput).empty()
