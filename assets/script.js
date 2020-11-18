@@ -1,8 +1,6 @@
 
 function search(event){
     event.preventDefault()
-    $(cityInput).empty()
-    $(countryInput).empty()
     $("#advisoryResults").empty()
     $("#covidResults").empty()
     $("#newsResults").empty()
@@ -51,7 +49,6 @@ function search(event){
     //localStorage.setItem("searchItems", cityInput)
 
 })}
-
 
 $("#checkCity").on("click", search);
 //$(cityInput).empty()
