@@ -94,6 +94,10 @@ function updateNewsSection(response) {
     //Declare variables.
     
     // var combinedCityCountry = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
+
+    var combinedCityCountry = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
+    var newsAPI = "http://newsapi.org/v2/everything?q=" + combinedCityCountry + "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
+
     var numArticles = $("#article-count").val();
 
     console.log(response);
