@@ -18,44 +18,45 @@
     
   }
   #body {
-    background-image: url("https://thumbs.dreamstime.com/z/retro-vacation-postcard-12722965.jpg");
+    /* background-image: url("https://thumbs.dreamstime.com/z/retro-vacation-postcard-12722965.jpg"); */
     /* background-color: #33E2FF; */
     /* font-family: Arial, Helvetica, sans-serif; */
   }
-  /* #destinationImage { */
-    /* background-image: url("https://thumbs.dreamstime.com/z/retro-vacation-postcard-12722965.jpg"); */
-    /* border-top-width: initial; */
-    /* height: 200px; */
-    /* background-color: yellow; */
-    /* padding: 10px; */
-  }
   #userInput {
     border-top-width: initial;
-    height: 75px;
-    font-size: 15px;
+    height: 100px;
+    font-size: 25px;
     text-align: center;
     color: white;
   }
   #advisoryResults {
-    margin-left: 500px;
-    width: 800px;
-    height: 70px;
-    background-color: #ffff00;
-    color: white;
+    margin-left: 800px;
+    width: 500px;
+    height: 100px;
+    padding: 25px;
+    background-origin: padding-box;
+    background-color: cadetblue;
+    opacity: 0.8;
+    color: black;
   }
   #newsResults {
-  margin-left: 250px;
-  width: 800px;
-  height: 150px;
-  background-color: #ff7f50;
-  opacity: 0.3;
-  color: white;
+    margin-left: 400px;
+    width: 500px;
+    height: 150px;
+    padding: 25px;
+    background-origin: padding-box;
+    background-color: coral;
+    opacity: 0.6;
+    color: black;
 }  
   #covidResults {
-  width: 800px;
-  height: 80px;
-  background-color: #6a50ff;
-  color: white;
+    width: 500px;
+    height: 100px;
+    padding: 25px;
+    background-origin: padding-box;
+    background-color: #6a50ff;
+    opacity: 0.7;
+    color: black;
 }
   #about {
     max-width: auto;
@@ -63,6 +64,7 @@
     height: 75px;
     text-align: justify;
     font-size: 20px;
-    /* background-color: #ffbc50ee; */
-    color: purple;   
+    background-color: #b3ff50ee;
+    opacity: 0.8;
+    color: black;   
 } 
