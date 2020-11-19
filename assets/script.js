@@ -59,121 +59,152 @@ function search(event) {
 
 // var country = $("#countryInput")
 
+//New News
+function searchnytAPI_URL() {
 
+    // var nytAPI_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+    // var queryParams = { "api-key": "y9s3gC1Z1CXpiwsQlGQNFC7eAFF0Lbpu" };
 
-//News
-function searchNewsAPI() {
-    console.log("Hola");
+    // var cityInput = $("#cityInput").val();
+    // var countryInput = $("#countryInput").val();
+    // var combinedCityCountry = cityInput.val().trim().concat("%20", countryInp.val().trim(), "%20covid");
 
-    //Declare variables.
-    var cityInput = $("#cityInput").val();
-    var countryInput = $("#countryInput").val();
-    var combinedCityCountry = cityInput.val().trim().concat("%20", countryInp.val().trim(), "%20covid");
-    var newsAPI = "http://newsapi.org/v2/everything?q=" + combinedCityCountry + "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
-    var numArticles = $("#article-count").val();
+    // queryParams.q = combinedCityCountry;
 
-    //Call AJAX to run our News API call.
-    $.ajax({
-        url: newsAPI,
-        method: "GET"
-    })
-
-        //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
-        .then(function (response) {
-            console.log(queryURL);
-            console.log(response);
-
-            for (var i = 0; i < numArticles; i++) {
-                console.log("Howdy");
-                $("#newsResults").append("<p>").text(response.articles[i].source);
-                $("#newsResults").append("<p>").text(response.articles[i].title);
-                $("#newsResults").append("<p>").text(response.articles[i].publishedAt);
-                $("#newsResults").append("<p>").text(response.articles[i].url);
-            }
-        })
-
+    // console.log("---------------\nURL: " + queryURL + "\n---------------");
+    // console.log(nytAPI_URL + $.param(queryParams));
+    // return nytAPI_URL + $param(queryParams);
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-// function logNewsAPIQuery() {
-//     var combinedCityCountry = city.val().trim().concat("%20", country.val().trim(), "%20covid");
-//     return "http://newsapi.org/v2/everything?q=" + combinedCityCountry + "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
-//     console.log(response)
-
-// }
-
-// function updateNewsSection(response) {
-//     console.log("made it")
-//     console.log(response);
-//     // console.log("News API Query: " + combinedCityCountry);
 
 
-//     var numArticles = 5;
+function updateNewsSection(NYTData) {
+
+    var numArticles = $("#article-count").val();
+
+    console.log(NYTData);
+
+    for (var i = 0; i < numArticles; i++) {
+        $("#newsResults").append("<p>").text(response.articles[i].source);
+        $("#newsResults").append("<p>").text(response.articles[i].title);
+        $("#newsResults").append("<p>").text(response.articles[i].publishedAt);
+        $("#newsResults").append("<p>").text(response.articles[i].url);
+    }
+
+    $("#userInput").on("submit", function (event) {
+        event.preventDefault();
+        search()
+        clearInterval();
+        console.log("here")
+
+        var nytAPI_URL = nytAPI_URL();
+
+        $.ajax({
+            url: nytAPI_URL,
+            method: "GET",
+        }).then(nytAPI_URL);
+    });
+
+    //News
+    // function searchnytAPI_URL() {
+    //     console.log("Hola");
+
+    //     //Declare variables.
+    //     var cityInput = $("#cityInput").val();
+    //     var countryInput = $("#countryInput").val();
+    //     var combinedCityCountry = cityInput.val().trim().concat("%20", countryInp.val().trim(), "%20covid");
+    //     var nytAPI_URL = "http://nytAPI_URL.org/v2/everything?q=" + combinedCityCountry + "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
+    //     var numArticles = $("#article-count").val();
+
+    //     //Call AJAX to run our News API call.
+    //     $.ajax({
+    //         url: nytAPI_URL,
+    //         method: "GET"
+    //     })
+
+    //         //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
+    //         .then(function (response) {
+    //             console.log(queryURL);
+    //             console.log(response);
+
+    // for (var i = 0; i < numArticles; i++) {
+    //     console.log("Howdy");
+    //     $("#newsResults").append("<p>").text(response.articles[i].source);
+    //     $("#newsResults").append("<p>").text(response.articles[i].title);
+    //     $("#newsResults").append("<p>").text(response.articles[i].publishedAt);
+    //     $("#newsResults").append("<p>").text(response.articles[i].url);
+    // }
+    //         })
+
+    // }
+
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // function lognytAPI_URLQuery() {
+    //     var combinedCityCountry = city.val().trim().concat("%20", country.val().trim(), "%20covid");
+    //     return "http://nytAPI_URL.org/v2/everything?q=" + combinedCityCountry + "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
+    //     console.log(response)
+
+    // }
+
+    // function updateNewsSection(response) {
+    //     console.log("made it")
+    //     console.log(response);
+    //     // console.log("News API Query: " + combinedCityCountry);
 
 
-//     for (var i = 0; i < numArticles; i++) {
-//         var article = response.articles[i];
+    //     var numArticles = 5;
 
-//         var title = response.articles.title;
 
-//         var articleCount = i + 1;
+    //     for (var i = 0; i < numArticles; i++) {
+    //         var article = response.articles[i];
 
-//         var $articleList = $("<ul>");
-//         $articleList.addClass("list-group");
+    //         var title = response.articles.title;
 
-//         $("#newsResults").append($articleList);
+    //         var articleCount = i + 1;
 
-//         var $articleListItem = $("<li class='list-group-item articlesTitle'>")
+    //         var $articleList = $("<ul>");
+    //         $articleList.addClass("list-group");
 
-//         var description = response.articles.description;
+    //         $("#newsResults").append($articleList);
 
-//         var articleURL = response.articles.url;
+    //         var $articleListItem = $("<li class='list-group-item articlesTitle'>")
 
-//         var publishedDate = response.articles.publishedAt;
+    //         var description = response.articles.description;
 
-//         $.ajax({
-//             url: newsAPI,
-//             method: "GET",
-//         }).then(function (response) {
+    //         var articleURL = response.articles.url;
 
-//             if (title) {
-//                 console.log(title);
-//                 $articleListItem.append("<span>" + articleCount + "</span>" + "<h2>" + title + "</h2>");
-//             }
+    //         var publishedDate = response.articles.publishedAt;
 
-//             if (publishedDate) {
-//                 console.log(publishedDate);
-//                 $articleListItem.append("<h5>" + publishedDate + "<h5>");
-//             }
+    //         $.ajax({
+    //             url: nytAPI_URL,
+    //             method: "GET",
+    //         }).then(function (response) {
 
-//             if (description) {
-//                 console.log(description);
-//                 $articleListItem.append("<h5" + description + "<h5>");
-//             }
+    //             if (title) {
+    //                 console.log(title);
+    //                 $articleListItem.append("<span>" + articleCount + "</span>" + "<h2>" + title + "</h2>");
+    //             }
 
-//             if (articleURL) {
-//                 console.log(articleURL);
-//                 $articleListItem.append("<h5>" + articleURL + "<h5>");
-//             }
-//         }
-//     })
+    //             if (publishedDate) {
+    //                 console.log(publishedDate);
+    //                 $articleListItem.append("<h5>" + publishedDate + "<h5>");
+    //             }
 
-// }
+    //             if (description) {
+    //                 console.log(description);
+    //                 $articleListItem.append("<h5" + description + "<h5>");
+    //             }
 
-//Click Handlers for News API
-$("#userInput").on("submit", function (event) {
-    event.preventDefault();
-    search()
-    clearInterval();
-    console.log("here")
+    //             if (articleURL) {
+    //                 console.log(articleURL);
+    //                 $articleListItem.append("<h5>" + articleURL + "<h5>");
+    //             }
+    //         }
+    //     })
 
-    var newsAPI = searchNewsAPI();
+    // }
 
-    $.ajax({
-        url: newsAPI,
-        method: "GET",
-    }).then(searchNewsAPI);
-});
+    //Click Handlers for News API
 
 // $("#checkCity").on("click", search);
 //$(cityInput).empty()
