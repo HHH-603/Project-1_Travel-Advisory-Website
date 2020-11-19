@@ -1,5 +1,4 @@
-function search(event) {
-    event.preventDefault()
+function search() {
 
     $("#advisoryResults").empty()
     $("#covidResults").empty()
@@ -66,9 +65,9 @@ function searchNewsAPI() {
     console.log("Hola");
 
     //Declare variables.
-    var cityInput = $("#cityInput").val();
-    var countryInput = $("#countryInput").val();
-    var combinedCityCountry = cityInput.val().trim().concat("%20", countryInp.val().trim(), "%20covid");
+    var cityInput = $("#cityInput");
+    var countryInput = $("#countryInput");
+    var combinedCityCountry = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
     var newsAPI = "http://newsapi.org/v2/everything?q=" + combinedCityCountry + "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
     var numArticles = $("#article-count").val();
 
@@ -80,15 +79,23 @@ function searchNewsAPI() {
 
         //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
         .then(function (response) {
-            console.log(queryURL);
+            console.log(newsAPI);
             console.log(response);
-
+            $("#newsResults").removeClass("hide")
+            console.log(numArticles)
+            $("#newsResults").empty()
             for (var i = 0; i < numArticles; i++) {
-                console.log("Howdy");
-                $("#newsResults").append("<p>").text(response.articles[i].source);
-                $("#newsResults").append("<p>").text(response.articles[i].title);
-                $("#newsResults").append("<p>").text(response.articles[i].publishedAt);
-                $("#newsResults").append("<p>").text(response.articles[i].url);
+                var currentArticle = response.articles[i]
+                console.log(currentArticle);
+                var articleDiv = $("<div>")
+                articleDiv.append($("<h3>").text(currentArticle.title));
+                articleDiv.append($("<p>").text("Source: "+currentArticle.source.name));
+                articleDiv.append($("<p>").text("Date: "+currentArticle.publishedAt));
+                var link = $("<a>").text("Full Article");
+                link.attr("href", currentArticle.url)
+                link.attr("target", "_blank")
+                articleDiv.append(link)
+                $("#newsResults").append(articleDiv);
             }
         })
 
@@ -169,10 +176,10 @@ $("#userInput").on("submit", function (event) {
 
     var newsAPI = searchNewsAPI();
 
-    $.ajax({
-        url: newsAPI,
-        method: "GET",
-    }).then(searchNewsAPI);
+    // $.ajax({
+    //     url: newsAPI,
+    //     method: "GET",
+    // }).then(searchNewsAPI);
 });
 
 // $("#checkCity").on("click", search);
