@@ -68,7 +68,7 @@ function searchNewsAPI() {
     var cityInput = $("#cityInput");
     var countryInput = $("#countryInput");
     var combinedCityCountry = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
-    var newsAPI = "https://newsapi.org/v2/everything?q=" + combinedCityCountry + "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
+    var newsAPI = "http://newsapi.org/v2/everything?q=" + combinedCityCountry + "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
     var numArticles = $("#article-count").val();
 
     //Call AJAX to run our News API call.
