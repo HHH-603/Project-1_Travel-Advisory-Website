@@ -81,11 +81,11 @@ function nytAPI() {
     var countryInput = $("#countryInput");
     var baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
     var qParams = { "api-key": "y9s3gC1Z1CXpiwsQlGQNFC7eAFF0Lbpu" }
-    qParams.q = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
+    qParams.q = cityInput.val().trim().concat(" ", countryInput.val().trim(), " covid");
     qParams.begin_date = 20200101;
     qParams.end_date = moment().format('YYYYMMDD')
     console.log(baseUrl + $.param(qParams))
-
+    return baseUrl + $.param(qParams)
 }
 
 
@@ -100,20 +100,21 @@ function updateNewsSection(response) {
 
     //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
 
-    console.log(newsAPI);
-    console.log(response);
+    // console.log(newsAPI);
+    // console.log(response);
     $("#newsResults").removeClass("hide")
     console.log(numArticles)
     $("#newsResults").empty()
     for (var i = 0; i < numArticles; i++) {
-        var currentArticle = response.articles[i]
+        var currentArticle = response.response.docs[i]
         console.log(currentArticle);
         var articleDiv = $("<div>")
-        articleDiv.append($("<h3>").text(currentArticle.title));
-        articleDiv.append($("<p>").text("Source: " + currentArticle.source.name));
-        articleDiv.append($("<p>").text("Date: " + currentArticle.publishedAt));
+        articleDiv.append($("<h2>").text(currentArticle.headline.main));
+        articleDiv.append($("<p>").text("Source: New York Times" ));
+        articleDiv.append($("<p>").text("Date: " + moment(currentArticle.pub_date).format("MMM Do YYYY")));
+        articleDiv.append($("<p>").text("Summary: " + currentArticle.snippet));
         var link = $("<a>").text("Full Article");
-        link.attr("href", currentArticle.url)
+        link.attr("href", currentArticle.web_url)
         link.attr("target", "_blank")
         articleDiv.append(link)
         $("#newsResults").append(articleDiv);
@@ -129,7 +130,7 @@ $("#userInput").on("submit", function (event) {
     $.ajax({
         url: nytAPI_URL,
         method: "GET",
-    }).then(nytAPI_URL);
+    }).then(updateNewsSection);
 });
 
     //News
