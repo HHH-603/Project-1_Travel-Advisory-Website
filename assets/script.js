@@ -1,5 +1,5 @@
-function search(event) {
-    event.preventDefault()
+
+function search() {
 
     $("#advisoryResults").empty()
     $("#covidResults").empty()
@@ -76,34 +76,61 @@ function searchnytAPI_URL() {
     // return nytAPI_URL + $param(queryParams);
 }
 
+function nytAPI() {
+    var cityInput = $("#cityInput");
+    var countryInput = $("#countryInput");
+    var baseUrl = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+    var qParams = { "api-key": "y9s3gC1Z1CXpiwsQlGQNFC7eAFF0Lbpu" }
+    qParams.q = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
+    qParams.begin_date = 20200101;
+    qParams.end_date = moment().format('YYYYMMDD')
+    console.log(baseUrl + $.param(qParams))
+
+}
 
 
-function updateNewsSection(NYTData) {
+function updateNewsSection(response) {
 
+    //Declare variables.
+    
+    // var combinedCityCountry = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
     var numArticles = $("#article-count").val();
 
-    console.log(NYTData);
+    console.log(response);
 
+    //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
+
+    console.log(newsAPI);
+    console.log(response);
+    $("#newsResults").removeClass("hide")
+    console.log(numArticles)
+    $("#newsResults").empty()
     for (var i = 0; i < numArticles; i++) {
-        $("#newsResults").append("<p>").text(response.articles[i].source);
-        $("#newsResults").append("<p>").text(response.articles[i].title);
-        $("#newsResults").append("<p>").text(response.articles[i].publishedAt);
-        $("#newsResults").append("<p>").text(response.articles[i].url);
+        var currentArticle = response.articles[i]
+        console.log(currentArticle);
+        var articleDiv = $("<div>")
+        articleDiv.append($("<h3>").text(currentArticle.title));
+        articleDiv.append($("<p>").text("Source: " + currentArticle.source.name));
+        articleDiv.append($("<p>").text("Date: " + currentArticle.publishedAt));
+        var link = $("<a>").text("Full Article");
+        link.attr("href", currentArticle.url)
+        link.attr("target", "_blank")
+        articleDiv.append(link)
+        $("#newsResults").append(articleDiv);
+
     }
-
-    $("#userInput").on("submit", function (event) {
-        event.preventDefault();
-        search()
-        clearInterval();
-        console.log("here")
-
-        var nytAPI_URL = nytAPI_URL();
-
-        $.ajax({
-            url: nytAPI_URL,
-            method: "GET",
-        }).then(nytAPI_URL);
-    });
+}
+$("#userInput").on("submit", function (event) {
+    event.preventDefault();
+    var nytAPI_URL = nytAPI();
+    search()
+    clearInterval();
+    console.log("here")
+    $.ajax({
+        url: nytAPI_URL,
+        method: "GET",
+    }).then(nytAPI_URL);
+});
 
     //News
     // function searchnytAPI_URL() {
