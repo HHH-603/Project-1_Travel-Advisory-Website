@@ -1,5 +1,5 @@
-
-function search() {
+function search(event){
+    event.preventDefault()
 
     $("#advisoryResults").empty()
     $("#covidResults").empty()
