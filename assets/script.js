@@ -1,4 +1,4 @@
-function search(event){
+function search(event) {
     event.preventDefault()
 
     $("#advisoryResults").empty()
@@ -79,16 +79,16 @@ function searchNewsAPI() {
     })
 
         //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
-        .then(function(response) {
+        .then(function (response) {
             console.log(queryURL);
             console.log(response);
 
             for (var i = 0; i < numArticles; i++) {
                 console.log("Howdy");
-           $("#newsResults").append("<p>").text(response.articles[i].source);
-           $("#newsResults").append("<p>").text(response.articles[i].title);
-           $("#newsResults").append("<p>").text(response.articles[i].publishedAt);
-           $("#newsResults").append("<p>").text(response.articles[i].url);
+                $("#newsResults").append("<p>").text(response.articles[i].source);
+                $("#newsResults").append("<p>").text(response.articles[i].title);
+                $("#newsResults").append("<p>").text(response.articles[i].publishedAt);
+                $("#newsResults").append("<p>").text(response.articles[i].url);
             }
         })
 
