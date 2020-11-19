@@ -18,9 +18,8 @@
     
   }
   #body {
-    /* background-image: url("https://thumbs.dreamstime.com/z/retro-vacation-postcard-12722965.jpg"); */
-    /* background-color: #33E2FF; */
-    /* font-family: Arial, Helvetica, sans-serif; */
+    background-color: #33E2FF;
+    font-family: Arial, Helvetica, sans-serif;
   }
   #userInput {
     border-top-width: initial;
