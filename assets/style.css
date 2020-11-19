@@ -1,10 +1,10 @@
   .topnav {
     overflow: hidden;
-    background-color: #333;
+    background-color: #33E2FF;
     position: relative;
   }
   .topnav a {
-    float: left;
+    float: right;
     color: white;
     padding: 14px 16px;
     text-decoration: none;
@@ -15,47 +15,54 @@
     color: black;
   }
   #container {
-  
+    
   }
-  .body {
-    background-color: #33E2FF;
-    font-family: Arial, Helvetica, sans-serif;
+  #body {
+    background-image: url("https://thumbs.dreamstime.com/z/retro-vacation-postcard-12722965.jpg");
+    /* background-color: #33E2FF; */
+    /* font-family: Arial, Helvetica, sans-serif; */
   }
-  #destinationImage {
-    border-top-width: initial;
-    height: 200px;
-    background-color: #8f4122c2;
-    padding: 10px;
+  /* #destinationImage { */
+    /* background-image: url("https://thumbs.dreamstime.com/z/retro-vacation-postcard-12722965.jpg"); */
+    /* border-top-width: initial; */
+    /* height: 200px; */
+    /* background-color: yellow; */
+    /* padding: 10px; */
   }
   #userInput {
-    font-size: 20px;
+    border-top-width: initial;
+    height: 75px;
+    font-size: 15px;
     text-align: center;
     color: white;
   }
   #advisoryResults {
+    margin-left: 500px;
     width: 800px;
-    height: 250px;
-    background-color: #b3ff50;
-    color: white;
-  }
-  #covidResults {
-    width: 800px;
-    height: 250px;
-    background-color: #6a50ff;
+    height: 70px;
+    background-color: #ffff00;
     color: white;
   }
   #newsResults {
-    width: 800px;
-    height: 250px;
-    background-color: #ff7f5083;
-    color: white;
-  }  
+  margin-left: 250px;
+  width: 800px;
+  height: 150px;
+  background-color: #ff7f50;
+  opacity: 0.3;
+  color: white;
+}  
+  #covidResults {
+  width: 800px;
+  height: 80px;
+  background-color: #6a50ff;
+  color: white;
+}
   #about {
     max-width: auto;
     margin: auto;
     height: 75px;
     text-align: justify;
     font-size: 20px;
-    background-color: #ffbc50ee;
-    color: white;   
+    /* background-color: #ffbc50ee; */
+    color: purple;   
 } 
