@@ -28,8 +28,8 @@ body {
 }
 #userInput {
   border-top-width: initial;
-  background-color: #8f4122c2;
-
+  background-color: black;
+  font-family: oxygen, sans-serif;
   font-size: 25px;
   text-align: left;
   color: white;
