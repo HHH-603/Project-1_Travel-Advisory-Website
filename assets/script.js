@@ -5,14 +5,12 @@ function search() {
     var cityInput = $("#cityInput").val()
     var countryInput = $("#countryInput").val()
 
-
     localStorage.setItem("lastCity", cityInput)
     localStorage.setItem("lastCountry", countryInput)
     $("#about").addClass("hide")
     $("#advisoryResults").removeClass("hide")
     $("#covidResults").removeClass("hide")
     $("#newsResults").removeClass("hide")
-
 
     //Travel advisory.info web API
     var queryURL = "https://www.travel-advisory.info/api";
@@ -55,13 +53,8 @@ function search() {
             $("#covidResults").append(countryDiv).append(casesDiv).append(deathsDiv).append(cpmDiv).append(dpmDiv).append(activeDiv).append(recoverDiv)
         })
 
-
-
     })
 }
-
-
-
 function pageLoad() {
     var loadCity = localStorage.getItem("lastCity")
     var loadCountry = localStorage.getItem("lastCountry")
@@ -72,26 +65,6 @@ function pageLoad() {
 }
 
 $(window).on("load", pageLoad)
-
-
-        //localStorage.setItem("searchItems", cityInput)
-    })
-}
-// Global variables for News API
-// var city = $("#cityInput")
-// var country = $("#countryInput")
-//New News
-function searchnytAPI_URL() {
-    // var nytAPI_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
-    // var queryParams = { "api-key": "y9s3gC1Z1CXpiwsQlGQNFC7eAFF0Lbpu" };
-    // var cityInput = $("#cityInput").val();
-    // var countryInput = $("#countryInput").val();
-    // var combinedCityCountry = cityInput.val().trim().concat("%20", countryInp.val().trim(), "%20covid");
-    // queryParams.q = combinedCityCountry;
-    // console.log("---------------\nURL: " + queryURL + "\n---------------");
-    // console.log(nytAPI_URL + $.param(queryParams));
-    // return nytAPI_URL + $param(queryParams);
-}
 
 function nytAPI() {
     var cityInput = $("#cityInput");
@@ -113,9 +86,6 @@ function updateNewsSection(response) {
     var numArticles = $("#article-count").val();
     console.log(response);
     //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
-
-    // console.log(newsAPI);
-    // console.log(response);
 
     $("#newsResults").removeClass("hide")
     console.log(numArticles)
@@ -149,4 +119,3 @@ $("#userInput").on("submit", function (event) {
 });
 
 });
-
