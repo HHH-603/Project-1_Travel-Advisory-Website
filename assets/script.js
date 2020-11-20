@@ -1,10 +1,7 @@
-
 function search() {
-
     $("#advisoryResults").empty()
     $("#covidResults").empty()
     $("#newsResults").empty()
-
     var cityInput = $("#cityInput").val()
     var countryInput = $("#countryInput").val()
 
@@ -31,10 +28,7 @@ function search() {
         })
         console.log(found)
         $("#advisoryResults").append(found.advisory.message)
-
-
         console.log(countryInput)
-
         //Covid 19 UN statistics API
         var queryURL = "https://disease.sh/v3/covid-19/countries/" + countryInput + "?yesterday=true&twoDaysAgo=false&strict=false&allowNull=true";
         $.ajax({
@@ -59,12 +53,8 @@ function search() {
             $("#covidResults").append(countryDiv).append(casesDiv).append(deathsDiv).append(cpmDiv).append(dpmDiv).append(activeDiv).append(recoverDiv)
         })
 
-
     })
 }
-
-
-
 function pageLoad() {
     var loadCity = localStorage.getItem("lastCity")
     var loadCountry = localStorage.getItem("lastCountry")
@@ -87,17 +77,14 @@ function nytAPI() {
     console.log(baseUrl + $.param(qParams))
     return baseUrl + $.param(qParams)
 }
-
-
 function updateNewsSection(response) {
-
     //Declare variables.
+
+
 
     // var combinedCityCountry = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
     var numArticles = $("#article-count").val();
-
     console.log(response);
-
     //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
 
     $("#newsResults").removeClass("hide")
@@ -116,7 +103,6 @@ function updateNewsSection(response) {
         link.attr("target", "_blank")
         articleDiv.append(link)
         $("#newsResults").append(articleDiv);
-
     }
 }
 $("#userInput").on("submit", function (event) {
@@ -129,4 +115,7 @@ $("#userInput").on("submit", function (event) {
         url: nytAPI_URL,
         method: "GET",
     }).then(updateNewsSection);
+
+});
+
 });

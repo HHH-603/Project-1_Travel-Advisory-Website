@@ -1,13 +1,17 @@
 .topnav {
   overflow: hidden;
+
   background-color: #333;
   position: relative;
+
 }
 form{
   border-style: solid;
 }
+
 .topnav a {
   float: left;
+
   color: white;
   padding: 14px 16px;
   text-decoration: none;
@@ -18,17 +22,20 @@ form{
   color: black;
 }
 body {
+
   font-family: sans-serif, Arial, Helvetica, ;
   text-align: center; 
 }
 #userInput {
   border-top-width: initial;
   background-color: #8f4122c2;
+
   font-size: 25px;
   text-align: left;
   color: white;
 }
 #advisoryResults {
+
   margin-bottom: 20px;
   padding: 50px;
   width: 400px;
@@ -46,10 +53,12 @@ body {
   font-size: 25px;
   background-origin: padding-box;
   background-color: #6a50ff;
+
   font-size: 25px;
   color: black;
 }
 #newsResults {
+
   margin-bottom: 20px;
   width: 400px;
   min-height: 150px;
@@ -84,3 +93,4 @@ footer {
       margin-top: 0;
     }
   }
+
