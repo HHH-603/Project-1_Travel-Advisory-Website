@@ -14,14 +14,6 @@
   background-color: #ddd;
   color: black;
 }
-#logo {
-  display: inline-block;
-  margin: 15px; /* margin: 20px was off */
-  float: left;
-  height: 60px;
-  width: auto; /* correct proportions to specified height */
-  border-radius: 50%; /* makes it a circle */
-}
 body {
   font-family: sans-serif, Arial, Helvetica, ;
   text-align: center; 
@@ -33,7 +25,7 @@ body {
   padding: 10px;
   text-align: center;
   font-size: 18px;
-  color: white;
+  color: #E5B728;
 }
 .pure-g {
   text-align: center; 
@@ -89,4 +81,4 @@ body {
       .column, input[type=submit] {
         width: 100%;
         margin-top: 0;
-      }
+  }
