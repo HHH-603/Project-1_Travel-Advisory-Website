@@ -1,12 +1,10 @@
-
 function search() {
-
     $("#advisoryResults").empty()
     $("#covidResults").empty()
     $("#newsResults").empty()
-
     var cityInput = $("#cityInput").val()
     var countryInput = $("#countryInput").val()
+
 
     localStorage.setItem("lastCity", cityInput)
     localStorage.setItem("lastCountry", countryInput)
@@ -14,6 +12,7 @@ function search() {
     $("#advisoryResults").removeClass("hide")
     $("#covidResults").removeClass("hide")
     $("#newsResults").removeClass("hide")
+
 
     //Travel advisory.info web API
     var queryURL = "https://www.travel-advisory.info/api";
@@ -31,10 +30,7 @@ function search() {
         })
         console.log(found)
         $("#advisoryResults").append(found.advisory.message)
-
-
         console.log(countryInput)
-
         //Covid 19 UN statistics API
         var queryURL = "https://disease.sh/v3/covid-19/countries/" + countryInput + "?yesterday=true&twoDaysAgo=false&strict=false&allowNull=true";
         $.ajax({
@@ -60,6 +56,7 @@ function search() {
         })
 
 
+
     })
 }
 
@@ -76,6 +73,26 @@ function pageLoad() {
 
 $(window).on("load", pageLoad)
 
+
+        //localStorage.setItem("searchItems", cityInput)
+    })
+}
+// Global variables for News API
+// var city = $("#cityInput")
+// var country = $("#countryInput")
+//New News
+function searchnytAPI_URL() {
+    // var nytAPI_URL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?";
+    // var queryParams = { "api-key": "y9s3gC1Z1CXpiwsQlGQNFC7eAFF0Lbpu" };
+    // var cityInput = $("#cityInput").val();
+    // var countryInput = $("#countryInput").val();
+    // var combinedCityCountry = cityInput.val().trim().concat("%20", countryInp.val().trim(), "%20covid");
+    // queryParams.q = combinedCityCountry;
+    // console.log("---------------\nURL: " + queryURL + "\n---------------");
+    // console.log(nytAPI_URL + $.param(queryParams));
+    // return nytAPI_URL + $param(queryParams);
+}
+
 function nytAPI() {
     var cityInput = $("#cityInput");
     var countryInput = $("#countryInput");
@@ -87,18 +104,18 @@ function nytAPI() {
     console.log(baseUrl + $.param(qParams))
     return baseUrl + $.param(qParams)
 }
-
-
 function updateNewsSection(response) {
-
     //Declare variables.
+
+
 
     // var combinedCityCountry = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
     var numArticles = $("#article-count").val();
-
     console.log(response);
-
     //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
+
+    // console.log(newsAPI);
+    // console.log(response);
 
     $("#newsResults").removeClass("hide")
     console.log(numArticles)
@@ -116,7 +133,6 @@ function updateNewsSection(response) {
         link.attr("target", "_blank")
         articleDiv.append(link)
         $("#newsResults").append(articleDiv);
-
     }
 }
 $("#userInput").on("submit", function (event) {
@@ -129,4 +145,8 @@ $("#userInput").on("submit", function (event) {
         url: nytAPI_URL,
         method: "GET",
     }).then(updateNewsSection);
+
 });
+
+});
+
