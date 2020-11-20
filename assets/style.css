@@ -1,15 +1,17 @@
 .topnav {
   overflow: hidden;
-  background-color: #33E2FF;
+
+  background-color: #333;
+  position: relative;
+
 }
 form{
   border-style: solid;
 }
-.hide {
-  display: none;
-}
+
 .topnav a {
-  float: right;
+  float: left;
+
   color: white;
   padding: 14px 16px;
   text-decoration: none;
@@ -20,58 +22,75 @@ form{
   color: black;
 }
 body {
-  background-color: #33E2FF;
-  font-family: font-family: 'Ubuntu', sans-serif;
+
+  font-family: sans-serif, Arial, Helvetica, ;
+  text-align: center; 
 }
 #userInput {
   border-top-width: initial;
+  background-color: #8f4122c2;
+
   font-size: 25px;
   text-align: left;
   color: white;
 }
 #advisoryResults {
-  width: 500px;
-  height: 100px;
-  padding: 25px;
-  margin-top: 25px;
+
+  margin-bottom: 20px;
+  padding: 50px;
+  width: 400px;
+  min-height: 150px;
   background-origin: padding-box;
   background-color: cadetblue;
-  opacity: 0.8;
+  font-size: 25px;
+  color: black;
+}
+  #covidResults {
+  margin-bottom: 20px;
+  padding: 50px;
+  width: 400px;
+  min-height: 150px;
+  font-size: 25px;
+  background-origin: padding-box;
+  background-color: #6a50ff;
+
   font-size: 25px;
   color: black;
 }
 #newsResults {
-  margin-left: 400px;
-  width: 500px;
+
+  margin-bottom: 20px;
+  width: 400px;
   min-height: 150px;
-  padding: 25px;
+  padding: 50px;
   margin-top: 25px;
-  margin-bottom: 25px;
+  font-size: 25px;
   background-origin: padding-box;
   background-color: coral;
-  opacity: 0.6;
-  font-size: .8rem;
   color: black;
 }  
-
-#covidResults {
-  width: 500px;
-  /* height: 100px; */
-  padding: 25px;
-  background-origin: padding-box;
-  background-color: #6a50ff;
-  opacity: 0.7;
-  font-size: 25px;
+footer {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  height: 100px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #8f4122c2;
   color: black;
-
+  text-align: center;
+  font-size: 18px;
 }
-#about {
-  max-width: auto;
-  margin: auto;
-  height: 75px;
-  text-align: justify;
-  font-size: 20px;
-  background-color: #b3ff50ee;
-  opacity: 0.8;
-  color: black;   
-} 
+@media screen and (max-width: 769px) {
+.column, input[type=submit] {
+  width: 100%;
+  margin-top: 0;
+}
+}
+@media screen and (max-width: 400px) {
+    .column, input[type=submit] {
+      width: 100%;
+      margin-top: 0;
+    }
+  }
+
