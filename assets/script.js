@@ -4,6 +4,16 @@ function search() {
     $("#newsResults").empty()
     var cityInput = $("#cityInput").val()
     var countryInput = $("#countryInput").val()
+
+
+    localStorage.setItem("lastCity", cityInput)
+    localStorage.setItem("lastCountry", countryInput)
+    $("#about").addClass("hide")
+    $("#advisoryResults").removeClass("hide")
+    $("#covidResults").removeClass("hide")
+    $("#newsResults").removeClass("hide")
+
+
     //Travel advisory.info web API
     var queryURL = "https://www.travel-advisory.info/api";
     $.ajax({
@@ -19,7 +29,6 @@ function search() {
             return o.name.toLowerCase() === countryInput.toLowerCase()
         })
         console.log(found)
-        //$("#advisoryResults").append(found.name)     name included in message
         $("#advisoryResults").append(found.advisory.message)
         console.log(countryInput)
         //Covid 19 UN statistics API
@@ -29,14 +38,42 @@ function search() {
             method: "GET"
         }).then(function (response) {
             console.log(response);
-            $("#covidResults").append(response.country).append(":  ")
-            $("#covidResults").append("Cases:  ").append(response.cases)
-            $("#covidResults").append("Deaths:  ").append(response.deaths)
-            $("#covidResults").append("Cases per million:  ").append(response.casesPerOneMillion)
-            $("#covidResults").append("Deaths per million:  ").append(response.deathsPerOneMillion)
-            $("#covidResults").append("Active cases:  ").append(response.active)
-            $("#covidResults").append("Recovered:  ").append(response.recovered)
+            var countryDiv = $("<div>")
+            var casesDiv = $("<div>")
+            var deathsDiv = $("<div>")
+            var cpmDiv = $("<div>")
+            var dpmDiv = $("<div>")
+            var activeDiv = $("<div>")
+            var recoverDiv = ("<div>")
+            $(countryDiv).append(response.country).append(":  ");
+            $(casesDiv).append("Cases:  ").append(response.cases);
+            $(deathsDiv).append("Deaths:  ").append(response.deaths);
+            $(cpmDiv).append("Cases per million:  ").append(response.casesPerOneMillion);
+            $(dpmDiv).append("Deaths per million:  ").append(response.deathsPerOneMillion);
+            $(activeDiv).append("Active cases:  ").append(response.active);
+            $(recoverDiv).append("Recovered:  ").append(response.recovered);
+            $("#covidResults").append(countryDiv).append(casesDiv).append(deathsDiv).append(cpmDiv).append(dpmDiv).append(activeDiv).append(recoverDiv)
         })
+
+
+
+    })
+}
+
+
+
+function pageLoad() {
+    var loadCity = localStorage.getItem("lastCity")
+    var loadCountry = localStorage.getItem("lastCountry")
+    console.log(loadCountry)
+    $("#cityInput").val(loadCity)
+    $("#countryInput").val(loadCountry)
+    search
+}
+
+$(window).on("load", pageLoad)
+
+
         //localStorage.setItem("searchItems", cityInput)
     })
 }
@@ -55,6 +92,7 @@ function searchnytAPI_URL() {
     // console.log(nytAPI_URL + $.param(queryParams));
     // return nytAPI_URL + $param(queryParams);
 }
+
 function nytAPI() {
     var cityInput = $("#cityInput");
     var countryInput = $("#countryInput");
@@ -68,12 +106,17 @@ function nytAPI() {
 }
 function updateNewsSection(response) {
     //Declare variables.
+
+
+
     // var combinedCityCountry = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
     var numArticles = $("#article-count").val();
     console.log(response);
     //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
+
     // console.log(newsAPI);
     // console.log(response);
+
     $("#newsResults").removeClass("hide")
     console.log(numArticles)
     $("#newsResults").empty()
@@ -82,7 +125,7 @@ function updateNewsSection(response) {
         console.log(currentArticle);
         var articleDiv = $("<div>")
         articleDiv.append($("<h2>").text(currentArticle.headline.main));
-        articleDiv.append($("<p>").text("Source: New York Times" ));
+        articleDiv.append($("<p>").text("Source: New York Times"));
         articleDiv.append($("<p>").text("Date: " + moment(currentArticle.pub_date).format("MMM Do YYYY")));
         articleDiv.append($("<p>").text("Summary: " + currentArticle.snippet));
         var link = $("<a>").text("Full Article");
@@ -102,83 +145,8 @@ $("#userInput").on("submit", function (event) {
         url: nytAPI_URL,
         method: "GET",
     }).then(updateNewsSection);
+
 });
-    //News
-    // function searchnytAPI_URL() {
-    //     console.log("Hola");
-    //     //Declare variables.
-    //     var cityInput = $("#cityInput").val();
-    //     var countryInput = $("#countryInput").val();
-    //     var combinedCityCountry = cityInput.val().trim().concat("%20", countryInp.val().trim(), "%20covid");
-    //     var nytAPI_URL = "http://nytAPI_URL.org/v2/everything?q=" + combinedCityCountry + "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
-    //     var numArticles = $("#article-count").val();
-    //     //Call AJAX to run our News API call.
-    //     $.ajax({
-    //         url: nytAPI_URL,
-    //         method: "GET"
-    //     })
-    //         //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
-    //         .then(function (response) {
-    //             console.log(queryURL);
-    //             console.log(response);
-    // for (var i = 0; i < numArticles; i++) {
-    //     console.log("Howdy");
-    //     $("#newsResults").append("<p>").text(response.articles[i].source);
-    //     $("#newsResults").append("<p>").text(response.articles[i].title);
-    //     $("#newsResults").append("<p>").text(response.articles[i].publishedAt);
-    //     $("#newsResults").append("<p>").text(response.articles[i].url);
-    // }
-    //         })
-    // }
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    // function lognytAPI_URLQuery() {
-    //     var combinedCityCountry = city.val().trim().concat("%20", country.val().trim(), "%20covid");
-    //     return "http://nytAPI_URL.org/v2/everything?q=" + combinedCityCountry + "&from=2020-11-18&sortBy=publishedAt&apiKey=98fd7faf9093410f8ecd11562a55f1ed";
-    //     console.log(response)
-    // }
-    // function updateNewsSection(response) {
-    //     console.log("made it")
-    //     console.log(response);
-    //     // console.log("News API Query: " + combinedCityCountry);
-    //     var numArticles = 5;
-    //     for (var i = 0; i < numArticles; i++) {
-    //         var article = response.articles[i];
-    //         var title = response.articles.title;
-    //         var articleCount = i + 1;
-    //         var $articleList = $("<ul>");
-    //         $articleList.addClass("list-group");
-    //         $("#newsResults").append($articleList);
-    //         var $articleListItem = $("<li class='list-group-item articlesTitle'>")
-    //         var description = response.articles.description;
-    //         var articleURL = response.articles.url;
-    //         var publishedDate = response.articles.publishedAt;
-    //         $.ajax({
-    //             url: nytAPI_URL,
-    //             method: "GET",
-    //         }).then(function (response) {
-    //             if (title) {
-    //                 console.log(title);
-    //                 $articleListItem.append("<span>" + articleCount + "</span>" + "<h2>" + title + "</h2>");
-    //             }
-    //             if (publishedDate) {
-    //                 console.log(publishedDate);
-    //                 $articleListItem.append("<h5>" + publishedDate + "<h5>");
-    //             }
-    //             if (description) {
-    //                 console.log(description);
-    //                 $articleListItem.append("<h5" + description + "<h5>");
-    //             }
-    //             if (articleURL) {
-    //                 console.log(articleURL);
-    //                 $articleListItem.append("<h5>" + articleURL + "<h5>");
-    //             }
-    //         }
-    //     })
-    // }
-    //Click Handlers for News API
-// $("#checkCity").on("click", search);
-//$(cityInput).empty()
-//$(countryInput).empty()
-//$("#advisoryResults").empty()
-//$("#covidResults").empty()
-//$("#newsResults").empty()
+
+});
+
