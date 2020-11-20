@@ -26,11 +26,17 @@ body {
   font-family: sans-serif, Arial, Helvetica, ;
   text-align: center; 
 }
+#legend{
+  text-align: center;
+  font-size: 25px;
+  color: rgb(4, 4, 133)
+
+}
 #userInput {
   border-top-width: initial;
   background-color: black;
   font-family: oxygen, sans-serif;
-  font-size: 25px;
+  font-size: 20px;
   text-align: left;
   color: white;
 }

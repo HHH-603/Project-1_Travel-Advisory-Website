@@ -29,6 +29,14 @@ function search() {
         console.log(found)
         $("#advisoryResults").append(found.advisory.message)
         console.log(countryInput)
+        if (found.advisory.score <3.6){
+            $("#advisoryResults").attr("style", "background-color: green")
+        }
+        else if (2 < found.advisory.score < 4){
+            $("#advisoryResults").attr("style", "background-color: yellow")
+        }
+        else {$("#advisoryResults").attr("style", "background-color: red")}
+        
         //Covid 19 UN statistics API
         var queryURL = "https://disease.sh/v3/covid-19/countries/" + countryInput + "?yesterday=true&twoDaysAgo=false&strict=false&allowNull=true";
         $.ajax({
