@@ -118,4 +118,3 @@ $("#userInput").on("submit", function (event) {
 
 });
 
-});
