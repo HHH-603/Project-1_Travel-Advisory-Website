@@ -1,7 +1,6 @@
 .topnav {
   overflow: hidden;
   background-color: #33E2FF;
-  /* position: relative; */
 }
 form{
   border-style: solid;
@@ -54,6 +53,7 @@ body {
   font-size: .8rem;
   color: black;
 }  
+
 #covidResults {
   width: 500px;
   /* height: 100px; */
@@ -63,6 +63,7 @@ body {
   opacity: 0.7;
   font-size: 25px;
   color: black;
+
 }
 #about {
   max-width: auto;

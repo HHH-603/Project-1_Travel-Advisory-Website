@@ -4,12 +4,14 @@ function search() {
     $("#newsResults").empty()
     var cityInput = $("#cityInput").val()
     var countryInput = $("#countryInput").val()
+
     localStorage.setItem("lastCity", cityInput)
     localStorage.setItem("lastCountry", countryInput)
     $("#about").addClass("hide")
     $("#advisoryResults").removeClass("hide")
     $("#covidResults").removeClass("hide")
     $("#newsResults").removeClass("hide")
+
     //Travel advisory.info web API
     var queryURL = "https://www.travel-advisory.info/api";
     $.ajax({
@@ -50,6 +52,7 @@ function search() {
             $(recoverDiv).append("Recovered:  ").append(response.recovered);
             $("#covidResults").append(countryDiv).append(casesDiv).append(deathsDiv).append(cpmDiv).append(dpmDiv).append(activeDiv).append(recoverDiv)
         })
+
     })
 }
 function pageLoad() {
@@ -60,7 +63,9 @@ function pageLoad() {
     $("#countryInput").val(loadCountry)
     search
 }
+
 $(window).on("load", pageLoad)
+
 function nytAPI() {
     var cityInput = $("#cityInput");
     var countryInput = $("#countryInput");
@@ -74,10 +79,14 @@ function nytAPI() {
 }
 function updateNewsSection(response) {
     //Declare variables.
+
+
+
     // var combinedCityCountry = cityInput.val().trim().concat("%20", countryInput.val().trim(), "%20covid");
     var numArticles = $("#article-count").val();
     console.log(response);
     //Run function to log API query data and URL, and then create For Loop to create [i] number of paragraph tags to append [i] number of articles to #newsResults div.
+
     $("#newsResults").removeClass("hide")
     console.log(numArticles)
     $("#newsResults").empty()
@@ -106,4 +115,7 @@ $("#userInput").on("submit", function (event) {
         url: nytAPI_URL,
         method: "GET",
     }).then(updateNewsSection);
+
+});
+
 });
