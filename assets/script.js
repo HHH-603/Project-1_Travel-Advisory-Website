@@ -32,7 +32,7 @@ function search() {
         if (found.advisory.score <3.6){
             $("#advisoryResults").attr("style", "background-color: green")
         }
-        else if (2 < found.advisory.score < 4){
+        else if (3.6 < found.advisory.score < 4){
             $("#advisoryResults").attr("style", "background-color: yellow")
         }
         else {$("#advisoryResults").attr("style", "background-color: red")}
